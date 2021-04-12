@@ -18,7 +18,7 @@ body {
     border-radius: 30px;
     margin: 0 auto;
     width: 320px;
-    height: 400px;
+    height: 507px;
     background-color: #4a4d50;  
     box-shadow: 0 19px 38px rgba(19, 19, 19, .24),
   0 15px 12px rgba(19, 19, 19, .12);
@@ -35,6 +35,8 @@ button {
   color: #ffce5c;
   transition: all 300ms;
   border: 1px solid #0001;
+  width: 80px;
+  height: 70px;
 }
 
 button:hover {
@@ -61,15 +63,14 @@ button:hover {
 
 .functions button {
   display: inline-block;
-  width: 80px;
-  height: 70px;
   color: #d98de9;
 }
 .math-operations button{
     display: block;
-    height: 42px;
-    width:50px;
     color: #d98de9;
+}
+.math-operations button:last-child{
+  border-bottom-right-radius: 30px;
 }
 .functions button:hover, 
 .math-operations button:hover {
@@ -78,33 +79,28 @@ button:hover {
 
 
 .numbers button {
-  position: relative;
-  height: 80px;
+  display: inline-block;
 }
 
-.numbers button:last-child {
-  width: 100%;
+.last{
+  margin-left: 80px !important;
 }
 
 .functions {
   display: inline-block;
-  margin-bottom: 30px;
-  margin-left:10px;
 }
 .calc-name{
     padding: 30px;
     text-align: center;
     color: white;
 }
-.number{
-    margin-left:15px;
-}
+
 .left{
     float:left;
-    width:80%;
+    width:75%;
 }
 .math-operations{
     float: right;
-    width: 20%;
+    width: 25%;
     text-align: center;
 }
