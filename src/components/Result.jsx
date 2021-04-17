@@ -1,12 +1,18 @@
 import React from 'react'
+import PropType from 'prop-types'
 
-const Result = () => {
-    console.log("Render of Result.jsx")
-    return (
-        <div className="result">
-            <span>0</span>
-        </div>
-    )
+const Result = ({propValue}) => (
+    <div className="result">
+        {propValue}
+    </div>
+)
+
+//Valida Argumentos con la libreria prop-types
+Result.propType = {
+    propValue: PropType.string.isRequired
+}
+Result.defaultProps =  {
+    propValur: "0"
 }
 
 export default Result

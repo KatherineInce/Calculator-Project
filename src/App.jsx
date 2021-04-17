@@ -1,42 +1,33 @@
 //import
 import React from 'react'
-import './App.css'
 import Result from './components/Result'
+import MathButton from './components/MathOperations/MathOperations'
+import Functions from './components/Functions/Functions'
+import Numbers from './components/Numbers/Numbers'
+import './App.css'
 
 //function
 const App = () => {//function flecha
     console.log("Render of App.jsx")
+    const result=text=>{
+        console.log(text)
+    }
     return (
         <main className="react-calculator">
             <div className="calc-name">CALCULATOR KAT</div>
-            <Result/>  
+            <Result propValue={"0"}/>  
             <div className="left">
-                    <div className="functions">
-                        <button>CE</button>
-                        <button>C</button>
-                        <button>DEL</button>
-                    </div>
-                    <div className="number">
-                        <button>7</button>
-                        <button>8</button>
-                        <button>9</button>
-                        <button>4</button>
-                        <button>5</button>
-                        <button>6</button>
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button className='last'>0</button>
-                        <button>.</button>
-                    </div>
+                    <Functions 
+                        onContentClear={clear => console.log(clear)}
+                        onLastContentClear={lastClear => console.log(lastClear)}
+                        onDelete={del => console.log(del)}
+                    />
+                    <Numbers onClickNumber={number=> {console.log(number)}}/>
                 </div>
-            <div className="math-operations">
-                        <button>+</button>
-                        <button>-</button>
-                        <button>*</button>
-                        <button>/</button>
-                        <button>=</button>
-                </div>
+                <MathButton 
+                    onClickOperation={operation => console.log(operation)} 
+                    onClickEqual={equal => console.log(equal)}
+                />
         </main>
     )
 }
