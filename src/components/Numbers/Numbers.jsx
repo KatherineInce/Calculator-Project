@@ -1,23 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button/Button'
-const renderButtons=(onClickNumber)=>{
-    
+
+//DRY DONT REPEAT YOURSELF
+const renderButtons= onClickNumber =>{
+    //var number = 7-9, 4-5,1-3
+    //<Button text="1" clickHandler={onClickNumber}/>
+    var numbers = ['7','8','9','4','5','6','1','2','3','0','.']
+    var buttonCreated = numbers.map(x => x === '0' ? <Button key={x} text= {x} type="last" clickHandler={onClickNumber}/> :<Button key={x} text= {x} clickHandler={onClickNumber}/>)
+    return buttonCreated
 }
 const Numbers = ({onClickNumber})=>(
 
     <section className="numbers">
-        <Button text="7" clickHandler={onClickNumber}></Button>
-        <Button text="8" clickHandler={onClickNumber}></Button>
-        <Button text="9" clickHandler={onClickNumber}></Button>
-        <Button text="4" clickHandler={onClickNumber}></Button>
-        <Button text="5" clickHandler={onClickNumber}></Button>
-        <Button text="6" clickHandler={onClickNumber}></Button>
-        <Button text="1" clickHandler={onClickNumber}></Button>
-        <Button text="2" clickHandler={onClickNumber}></Button>
-        <Button text="3" clickHandler={onClickNumber}></Button>
-        <Button type="last" text="0" clickHandler={onClickNumber}></Button>
-        <Button text="." clickHandler={onClickNumber}></Button>
+        {renderButtons(onClickNumber)}
     </section>
 )
 

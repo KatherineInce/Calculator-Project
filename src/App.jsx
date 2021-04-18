@@ -1,5 +1,8 @@
+/*eslint no-eval: 0*/
+
 //import
-import React from 'react'
+import React, {useState} from 'react'
+import words from 'lodash.words'
 import Result from './components/Result'
 import MathButton from './components/MathOperations/MathOperations'
 import Functions from './components/Functions/Functions'
@@ -8,25 +11,56 @@ import './App.css'
 
 //function
 const App = () => {//function flecha
-    console.log("Render of App.jsx")
-    const result=text=>{
-        console.log(text)
-    }
+    //first element the value of the state, second the function who chance the value of the state
+    const [stack,setStack] = useState("");
+
+    const items = words(stack, /[^-^+^*^/]+/g)
+
     return (
         <main className="react-calculator">
             <div className="calc-name">CALCULATOR KAT</div>
-            <Result propValue={"0"}/>  
+            <Result propValue={items[items.length-1]}/>  
             <div className="left">
                     <Functions 
-                        onContentClear={clear => console.log(clear)}
-                        onLastContentClear={lastClear => console.log(lastClear)}
-                        onDelete={del => console.log(del)}
+                        onContentClear={clear => {setStack("")}}
+                        onDelete={del => {
+                            if(stack !== "")
+                            {    
+                                const newStack = stack.substring(0,stack.length -1)
+                                setStack(newStack)
+                            }
+                        }}
                     />
-                    <Numbers onClickNumber={number=> {console.log(number)}}/>
+                    <Numbers onClickNumber={
+                        number=> {
+                            //template literals
+                            if(number === '.' && stack === "")
+                                setStack(`${0}${number}`)
+                            else
+                                setStack(`${stack}${number}`)
+                        }
+                    }/>
                 </div>
                 <MathButton 
-                    onClickOperation={operation => console.log(operation)} 
-                    onClickEqual={equal => console.log(equal)}
+                    onClickOperation={operation => {
+                        const newStack = stack.substring(stack.length -1,stack.length)
+                        if (newStack !== '.' && newStack !== '+' && newStack !== '-' && newStack !== '/' && newStack !== '*' && newStack !== '=' && stack !== "")
+                        setStack(`${stack}${operation}`)
+                        
+                    }} 
+                    onClickEqual={equal => {
+                        
+                        const newStack = stack.substring(stack.length -1,stack.length)
+                        if (newStack !== '+' && newStack !== '-' && newStack !== '/' && newStack !== '*' && newStack !== '=' && stack !== "" && newStack !== '.')
+                            {
+                                console.log(stack.search('\\+') > -1 , stack.search('\\-') > -1 , stack.search('\\/') > -1 && stack.search('\\*') > -1)
+                                if (stack.search('\\+') > -1 || stack.search('\\-') > -1 || stack.search('\\/') > -1 || stack.search('\\*') > -1)
+                                    {
+                                        setStack(eval(stack).toString())
+                                    }
+                            }
+                        
+                    }}
                 />
         </main>
     )

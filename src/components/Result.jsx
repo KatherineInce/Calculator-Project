@@ -12,7 +12,7 @@ Result.propType = {
     propValue: PropType.string.isRequired
 }
 Result.defaultProps =  {
-    propValur: "0"
+    propValue: "0"
 }
 
 export default Result
