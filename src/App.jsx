@@ -14,12 +14,16 @@ const App = () => {
     //first element the value of the state, second the function who chance the value of the state
     const [stack,setStack] = useState("");
 
-    const items = words(stack, /[^-^+^*^/]+/g)
+    const items = words(stack, /[^-^+^*^/]+/g);
+    const totalItems = words(stack,/[^=]+/g);
 
     return (
         <main className="react-calculator">
             <div className="calc-name">CALCULATOR KAT</div>
-            <Result propValue={items[items.length-1]}/>  
+            <Result 
+                propValue={items[items.length-1]}
+                propHistory={totalItems}    
+            />  
             <div className="left">
                     <Functions 
                         onContentClear={clear => {setStack("")}}
