@@ -10,7 +10,7 @@ import Numbers from './components/Numbers/Numbers'
 import './App.css'
 
 //function
-const App = () => {//function flecha
+const App = () => {
     //first element the value of the state, second the function who chance the value of the state
     const [stack,setStack] = useState("");
 
@@ -53,7 +53,6 @@ const App = () => {//function flecha
                         const newStack = stack.substring(stack.length -1,stack.length)
                         if (newStack !== '+' && newStack !== '-' && newStack !== '/' && newStack !== '*' && newStack !== '=' && stack !== "" && newStack !== '.')
                             {
-                                console.log(stack.search('\\+') > -1 , stack.search('\\-') > -1 , stack.search('\\/') > -1 && stack.search('\\*') > -1)
                                 if (stack.search('\\+') > -1 || stack.search('\\-') > -1 || stack.search('\\/') > -1 || stack.search('\\*') > -1)
                                     {
                                         setStack(eval(stack).toString())
