@@ -26,8 +26,8 @@ const App = () => {
             />  
             <div className="left">
                     <Functions 
-                        onContentClear={clear => {setStack("")}}
-                        onDelete={del => {
+                        onContentClear={() => {setStack("")}}
+                        onDelete={() => {
                             if(stack !== "")
                             {    
                                 const newStack = stack.substring(0,stack.length -1)
@@ -48,11 +48,17 @@ const App = () => {
                 <MathButton 
                     onClickOperation={operation => {
                         const newStack = stack.substring(stack.length -1,stack.length)
-                        if (newStack !== '.' && newStack !== '+' && newStack !== '-' && newStack !== '/' && newStack !== '*' && newStack !== '=' && stack !== "")
-                        setStack(`${stack}${operation}`)
-                        
+                        if (newStack === "")
+                        {
+                            if (operation === '-')
+                            {
+                                setStack(`${stack}${operation}`)
+                            }
+                        }
+                        else if (newStack !== '.' && newStack !== '+' && newStack !== '-' && newStack !== '/' && newStack !== '*' && newStack !== '=' && stack !== "")
+                            setStack(`${stack}${operation}`)
                     }} 
-                    onClickEqual={equal => {
+                    onClickEqual={() => {
                         
                         const newStack = stack.substring(stack.length -1,stack.length)
                         if (newStack !== '+' && newStack !== '-' && newStack !== '/' && newStack !== '*' && newStack !== '=' && stack !== "" && newStack !== '.')
