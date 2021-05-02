@@ -14,14 +14,40 @@ const App = () => {
     //first element the value of the state, second the function who chance the value of the state
     const [stack,setStack] = useState("");
 
-    const items = words(stack, /[^-^+^*^/]+/g);
+    const obtainLast = (items) =>{
+
+        if(items[items.length-1])
+        {
+            let lastValue = "0"
+            let last = items[items.length-1]
+            let id = -1
+
+            if(last.search("\\-") > -1)
+            {                
+                id = last.lastIndexOf("-")
+            }
+            else{
+
+                id = 0
+            }
+
+            lastValue = last.substring(id, last.length)
+            console.log()
+    
+            return lastValue
+            }
+    }
+    const items = words(stack, /[^+^*^/]+/g);
+    const last = obtainLast(items)
     const totalItems = words(stack,/[^=]+/g);
+    
+    
 
     return (
         <main className="react-calculator">
             <div className="calc-name">CALCULATOR KAT</div>
             <Result 
-                propValue={items[items.length-1]}
+                propValue={last}
                 propHistory={totalItems}    
             />  
             <div className="left">
